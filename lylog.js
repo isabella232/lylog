@@ -85,7 +85,7 @@ function close(conf) { return function(cb) {
 
 function parse(conf) { return function parser(socket) {
   if (conf.whitelist) {
-    var from = socket.remoteAddress
+    var from = socket.remoteAddress.replace('::ffff:', '')
     var match = conf.whitelist.some(function (cidr) {
       return cidrMatch(from, cidr)
     })
